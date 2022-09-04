@@ -5,7 +5,7 @@ import validate from '../modules/validate/validate.middleware'
 
 const router = express.Router()
 
-router.get('/login', authController.login)
-router.post('/register', validate(authValidation.register), authController.register)
+router.post('/login', validate(authValidation.authRequestBody), authController.login)
+router.post('/register', validate(authValidation.authRequestBody), authController.register)
 
 export default router

@@ -28,15 +28,14 @@ const userSchema = new mongoose.Schema<IUserDoc, IUserModel>(
 
 userSchema.plugin(toJSON)
 
-/**
- * Check if email is taken
- * @param {string} email - The user's email
- * @param {ObjectId} [excludeUserId] - The id of the user to be excluded
- * @returns {Promise<boolean>}
- */
 userSchema.static('isNameTaken', async function (name: string, excludeUserId: mongoose.ObjectId): Promise<boolean> {
   const user = await this.findOne({ name, _id: { $ne: excludeUserId } })
   return !!user
+})
+
+userSchema.method('isPasswordMatch', async function (password: string): Promise<boolean> {
+  const user = this
+  return bcrypt.compare(password, user.password)
 })
 
 userSchema.pre('save', async function (next) {

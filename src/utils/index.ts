@@ -1,5 +1,7 @@
 import catchAsync from "./catchAsync"
+import jwtToken from "./token"
 
-export default {
-  catchAsync
+export {
+  catchAsync,
+  jwtToken,
 }
