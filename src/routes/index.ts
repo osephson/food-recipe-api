@@ -4,19 +4,19 @@ import authRoute from './auth.route'
 const router = express.Router()
 
 interface IRoute {
-    path: string
-    route: Router
+  path: string
+  route: Router
 }
 
 const defaultIRoute: IRoute[] = [
-    {
-        path: '/auth',
-        route: authRoute,
-    },
+  {
+    path: '/auth',
+    route: authRoute,
+  },
 ]
 
 defaultIRoute.forEach(route => {
-    router.use(route.path, route.route)
+  router.use(route.path, route.route)
 })
 
 export default router
